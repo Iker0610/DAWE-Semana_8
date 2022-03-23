@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>HTML5 File Drag & Drop API</title>
+    <link rel="stylesheet" type="text/css" media="all" href="filedrag.css"/>
+</head>
+<body>
+
+    <form id="upload" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Datos del cliente</legend>
+            <br>
+            <label for="nombre">Nombre:</label>
+            <input id="nombre"
+                   type="text"
+                   placeholder="Introduce tu nombre"
+                   size="20" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"
+                   required autofocus>
+            <br>
+            <br>
+            <label for="telefono">Teléfono:</label>
+            <input id="telefono"
+                   type="text"
+                   placeholder="Patrón: 123-456-789"
+                   size="20" minlength="11" maxlength="11"
+                   required
+                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}">
+            <br>
+            <br>
+            <label for="mail">E-mail:</label>
+            <!-- Regex obtenido de:  https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address -->
+            <input id="mail"
+                   type="email"
+                   placeholder="Introduce tu dirección de correo electrónico"
+                   size="40"
+                   required
+                   pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+        </fieldset>
+
+        <fieldset>
+            <legend>Libros</legend>
+
+            <input id="libro" type="text" list="libros" size="40" required/>
+
+            <datalist id="libros">
+                <option>El Nombre del Viento</option>
+                <option>El Temor de un Hombre Sabio</option>
+                <option>Las Puertas de Piedra</option>
+                <option>El Principito</option>
+                <option>El Pozo de la Eternidad</option>
+            </datalist>
+
+            <label for="num_libros">Cantidad (Máx. 5): </label>
+            <input id="num_libros"
+                   type="number"
+                   min="1"
+                   max="5"
+                   step="1"
+                   required pattern=[0-5]>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>D&D File Uploader</legend>
+
+            <label for="fileselect">Elige los ficheros a subir: </label>
+            <input id="fileselect" type="file" name="fileselect" multiple/>
+            <div id="filedrag">Arrastra aquí tus ficheros</div>
+
+        </fieldset>
+
+        <br>
+        <input type="submit" id="enviar" value="Enviar">
+    </form>
+    <div id="messages"><p></p></div>
+    <div id="responses"><p></p></div>
+    <div id="images" style="display: flex"></div>
+    <script src="filedrag.js"></script>
+</body>
+</html>
